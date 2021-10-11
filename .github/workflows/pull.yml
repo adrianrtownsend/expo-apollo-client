@@ -1,10 +1,10 @@
-name: Expo Publish
-on:
-  push:
+name: Expo CI
+on: 
+  pull_request:
     branches:
       [ main ]
 jobs:
-  publish:
+  ci:
     name: Continuous Integration
     runs-on: ${{ matrix.os }}
     strategy:
@@ -22,8 +22,7 @@ jobs:
         uses: expo/expo-github-action@v6
         with:
           expo-version: ${{ matrix.expo-version }}
-          token: ${{ secrets.EXPO_TOKEN }}
-      - name: npm install, and expo publish
+      - name: npm install, and expo doctor
         run: |
           npm install
-          expo publish
+          expo doctor
