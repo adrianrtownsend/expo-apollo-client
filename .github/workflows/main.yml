@@ -23,7 +23,7 @@ jobs:
         with:
           expo-version: ${{ matrix.expo-version }}
           username: ${{ secrets.EXPO_USERNAME }}
-          token: ${{ secrets.EXPO_TOKEN }}
+          password: ${{ secrets.EXPO_PASSWORD }}
           packager: npm
       - name: npm install, and expo publish
         run: |
