@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [14.x]
         expo-version: [4.x]
     steps:
       - uses: actions/checkout@v2
@@ -22,6 +22,7 @@ jobs:
         uses: expo/expo-github-action@v6
         with:
           expo-version: ${{ matrix.expo-version }}
+          username: ${{ secrets.EXPO_USERNAME }}
           token: ${{ secrets.EXPO_TOKEN }}
           packager: npm
       - name: npm install, and expo publish
