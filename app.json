@@ -2,6 +2,7 @@
   "expo": {
     "name": "expo-apollo-client",
     "slug": "expo-apollo-client",
+    "currentFullName": "@greenlight8004/expo-apollo-client",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
