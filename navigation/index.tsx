@@ -19,12 +19,19 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
+import { AppProvider } from '../AppContext'
+import SignInScreen from '../screens/SignInScreen';
+import FeedScreen from '../screens/FeedScreen';
+import ItemScreen from '../screens/ItemScreen';
+
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
+      <AppProvider>
+        <RootNavigator />
+      </AppProvider>
     </NavigationContainer>
   );
 }
@@ -45,6 +52,28 @@ function RootNavigator() {
       </Stack.Group>
     </Stack.Navigator>
   );
+}
+
+/**
+ * 
+*/
+const Auth = createNativeStackNavigator()
+
+const AuthNavigator = () => {
+
+  const auth = {
+    userToken: null,
+  }
+
+  return (
+    <Auth.Navigator>
+      {auth.userToken == null ? (
+        <SignInScreen />
+      ) : ( 
+        <ItemScreen />
+      )}
+    </Auth.Navigator>
+  )
 }
 
 /**
@@ -105,3 +134,8 @@ function TabBarIcon(props: {
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
+
+
+/**
+ * Navigation Context based on react navigation and firebase auth triggers 
+*/

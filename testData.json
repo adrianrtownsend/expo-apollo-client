@@ -1,0 +1,103 @@
+{
+  "user": {
+    "id": 1,
+    "email": "testmail@mail.com",
+    "username": "testusername0123",
+    "first": "John",
+    "last": "Doe",
+    "img": "https://pbs.twimg.com/profile_images/1177303899243343872/B0sUJIH0_400x400.jpg"
+  },
+  "classes": [
+    {
+      "id": 1,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },
+    {
+      "id": 2,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },
+    {
+      "id": 3,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },
+    {
+      "id": 4,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },
+    {
+      "id": 5,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },{
+      "id": 6,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },
+    {
+      "id": 7,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },
+    {
+      "id": 8,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },
+    {
+      "id": 9,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    },
+    {
+      "id": 10,
+      "code": "ADD3523",
+      "teacher": "Ms. Jones",
+      "grade": "B",
+      "status": "open",
+      "score": "85"
+    }
+  ],
+  "assignments": [
+    {
+      "id": 1,
+      "classID": 1,
+      "name": "Intro to Math",
+      "data": {},
+      "status": "open",
+      "questions": [],
+      "timeLimit": 3000,
+      "sessions": []
+    }
+  ]
+}
