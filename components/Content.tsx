@@ -2,9 +2,9 @@ import * as React from 'react'
 
 import { Box } from 'native-base'
 
-const Content = (props, { children }) => (
+const Content = (props: any) => (
   <Box flex={props.flex}>
-    {children}
+    {props.children}
   </Box>
 )
 

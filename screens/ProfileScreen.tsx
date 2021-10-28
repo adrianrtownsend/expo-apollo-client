@@ -40,37 +40,37 @@ const Profile = ({ route }: any) => {
   return (
     <Box flex={1} p="5">
       <StatusBar />
-        <Heading route={route}>
-          <HStack
-            alignItems="center"
-            justifyContent="space-evenly"
-          >
-            <Avatar
-              bg="pink.600"
-              size="xl"
-              source={{
-                uri: "https://pbs.twimg.com/profile_images/1177303899243343872/B0sUJIH0_400x400.jpg",
-              }}
-            ></Avatar>
-            <VStack>
-              {/* Username */}
-              <Text>{'student0123'}</Text>
-              {/* Email */}
-              <Text>{'testmail@mail.com'}</Text>
-            </VStack>
-            <EditOutlined />
-          </HStack>
-        </Heading>
-        <Attributes data={stats} />
-        <Select data={filters} />
-        <List
-          action={{
-            type: 'query',
-            operation: 'get',
-            model: 'Class',
-            variables: {}
-          }}
-        />
+      <Heading route={route}>
+        <HStack
+          alignItems="center"
+          justifyContent="space-evenly"
+        >
+          <Avatar
+            bg="pink.600"
+            size="xl"
+            source={{
+              uri: "https://pbs.twimg.com/profile_images/1177303899243343872/B0sUJIH0_400x400.jpg",
+            }}
+          ></Avatar>
+          <VStack>
+            {/* Username */}
+            <Text>{'student0123'}</Text>
+            {/* Email */}
+            <Text>{'testmail@mail.com'}</Text>
+          </VStack>
+          <EditOutlined />
+        </HStack>
+      </Heading>
+      <Attributes data={stats} />
+      <Select data={filters} />
+      <List
+        action={{
+          type: 'query',
+          operation: 'get',
+          model: 'Class',
+          variables: {}
+        }}
+      />
     </Box>
   ) 
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, createContext, useMemo } from 'react'
-//import * as SecureStore from 'expo-secure-store'
+import firebase from 'firebase'
 
 import { IAction, IAppContext, IAuthActionData, IApiActionData, IState } from './types'
 
@@ -8,19 +8,29 @@ const initialState: IState = {
   loading: true
 }
 
-const reducer = (prevState: IState, action: IAction) => {
+interface IAuth {
+  user: object | null
+}
+
+const firebaseConfig = {
+  apiKey: "####",
+  authDomain: "####",
+  projectId: "school-app-213a1",
+  storageBucket: "####",
+  messagingSenderId: "####",
+  appId: "####",
+  measurementId: "####"
+};
+
+const authInitialState: IAuth = {
+  user: null
+}
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig)
+
+const authReducer = (prevState: IAuth, action: IAction) => {
   switch(action.type) {
-    case 'IS_LOADED': 
-      console.log('loaded')
-      return ({
-        ...prevState,
-        loading: false
-      })
-    case 'SIGN_OUT':
-      return initialState
-    case 'TEST':
-      console.log('testing: ', action.payload)
-      return ({...prevState})
     case 'AUTH_CURRENT_USER':
       console.log('logged in user: ', action.payload.user)
       return ({
@@ -30,7 +40,25 @@ const reducer = (prevState: IState, action: IAction) => {
     default:
       throw new Error()
   }
-};
+}
+
+const reducer = (prevState: IState, action: IAction) => {
+  switch(action.type) {
+    case 'SET_LOADED': 
+      console.log('loaded')
+      return ({
+        ...prevState,
+        loading: action.payload.loading
+      })
+    case 'SIGN_OUT':
+      return initialState
+    case 'TEST':
+      console.log('testing: ', action.payload)
+      return ({...prevState})
+    default:
+      throw new Error()
+  }
+}
 
 export const AppContext = createContext<IAppContext | null>(null)
 
@@ -38,8 +66,30 @@ export const AppProvider = ({ children }: any) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  const [authState, authDispatch] = useReducer(authReducer, authInitialState)
+
   useEffect(() => {
-    dispatch({type: 'IS_LOADED'})
+    dispatch({
+      type: 'SET_LOADED', 
+      payload: { 
+        loading: true
+      }
+    })
+
+    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
+      authDispatch({type: 'AUTH_CURRENT_USER', payload: {user: !!user}})
+    })
+
+    return () => {
+      //unregisterAuthObserver()
+      dispatch({
+        type: 'IS_LOADED', 
+        payload: { 
+          loading: false
+        }
+      })
+    }
+
   }, [])
 
   /**

@@ -9,6 +9,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
+import { NativeBaseProvider } from 'native-base'
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -19,19 +20,17 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
-import { AppProvider } from '../AppContext'
-import SignInScreen from '../screens/SignInScreen';
+import FormScreen from '../screens/FormScreen';
 import FeedScreen from '../screens/FeedScreen';
 import ItemScreen from '../screens/ItemScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AppProvider>
+    theme={/*colorScheme === 'dark' ? DarkTheme :*/ DefaultTheme}>
+      <NativeBaseProvider>
         <RootNavigator />
-      </AppProvider>
+      </NativeBaseProvider>
     </NavigationContainer>
   );
 }
@@ -45,7 +44,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Root" component={AuthNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -68,9 +67,12 @@ const AuthNavigator = () => {
   return (
     <Auth.Navigator>
       {auth.userToken == null ? (
-        <SignInScreen />
+        <>
+        <Auth.Screen name="SignIn" component={FormScreen} options={{ headerShown: false }} />
+        <Auth.Screen name="SignOut" component={FormScreen} options={{ headerShown: false }} />
+        </>
       ) : ( 
-        <ItemScreen />
+        <Auth.Screen name="Item" component={ItemScreen} options={{ headerShown: false }} />
       )}
     </Auth.Navigator>
   )
