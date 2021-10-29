@@ -15,7 +15,7 @@ interface IAuth {
 const firebaseConfig = {
   apiKey: "####",
   authDomain: "####",
-  projectId: "school-app-213a1",
+  projectId: "####",
   storageBucket: "####",
   messagingSenderId: "####",
   appId: "####",
